@@ -43,6 +43,8 @@ class ClickInterceptor: ObservableObject {
 
     // Tracks if the service is currently running
     @Published var isRunning = false
+    
+    @Published var hasStartedOnce = false
 
     func start() throws {
         guard !isRunning else { return }
@@ -73,6 +75,7 @@ class ClickInterceptor: ObservableObject {
         CGEvent.tapEnable(tap: tap, enable: true)
 
         isRunning = true
+        hasStartedOnce = true
     }
 
     func stop() {
@@ -88,6 +91,10 @@ class ClickInterceptor: ObservableObject {
         self.eventTap = nil
         self.runLoopSource = nil
         self.isRunning = false
+    }
+    
+    func getHasStartedOnce() -> Bool {
+        return hasStartedOnce
     }
 
     func getPermission() -> Bool {

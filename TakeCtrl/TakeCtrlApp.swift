@@ -119,7 +119,7 @@ struct TakeCtrlApp: App {
                 .buttonStyle(.accessoryBar)
             }
             .onReceive(permissionTimer) { _ in
-                if interceptor.getPermission() {
+                if interceptor.getPermission() && !interceptor.getHasStartedOnce() {
                     do {
                         try interceptor.start()
                         toggle = true
