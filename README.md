@@ -8,13 +8,13 @@
 
 ## About
 
-TakeCtrl is a simple Mac utility app that allows bypassing of the default
+TakeCtrl is a lightweight Mac menu bar app that allows bypassing of the default
 system-wide Control + Left Click behavior. It's useful for games like
 Minecraft where you may want to sprint (with the Control key pressed)
-while still being able to left click.
+while left clicking.
 
 Take Control of your Control key with TakeCtrl.
 
 ## Download
 
-Coming soon.
+Releases can be found [here](https://github.com/zacheri04/TakeCtrl/releases).
