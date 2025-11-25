@@ -13,6 +13,10 @@ system-wide Control + Left Click behavior. It's useful for games like
 Minecraft where you may want to sprint (with the Control key pressed)
 while left clicking.
 
+Supports Open at Login functionality.
+
+<img src="https://cdn.discordapp.com/attachments/486251739910111260/1442999182343278703/Screenshot_2025-11-25_at_4.03.17_PM.png?ex=69277936&is=692627b6&hm=ad1578dbc6b98628890e9ca02f81581db3af1b16d7c190a6452b0a8518641453&" alt="Screenshot" width="360">
+
 Take Control of your Control key with TakeCtrl.
 
 ## Download & Setup
