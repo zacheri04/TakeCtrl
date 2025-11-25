@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		14FA23A02ED5938B00AF7F67 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 14FA239F2ED5938B00AF7F67 /* AppIcon.icon */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		14FA23792ED5934700AF7F67 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,22 +31,13 @@
 		14FA236B2ED5934600AF7F67 /* TakeCtrl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TakeCtrl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14FA23782ED5934700AF7F67 /* TakeCtrlTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TakeCtrlTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		14FA23822ED5934700AF7F67 /* TakeCtrlUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TakeCtrlUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		14FA239F2ED5938B00AF7F67 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		14FA236D2ED5934600AF7F67 /* TakeCtrl */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = TakeCtrl;
-			sourceTree = "<group>";
-		};
-		14FA237B2ED5934700AF7F67 /* TakeCtrlTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = TakeCtrlTests;
-			sourceTree = "<group>";
-		};
-		14FA23852ED5934700AF7F67 /* TakeCtrlUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = TakeCtrlUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -76,9 +71,8 @@
 			isa = PBXGroup;
 			children = (
 				14FA236D2ED5934600AF7F67 /* TakeCtrl */,
-				14FA237B2ED5934700AF7F67 /* TakeCtrlTests */,
-				14FA23852ED5934700AF7F67 /* TakeCtrlUITests */,
 				14FA236C2ED5934600AF7F67 /* Products */,
+				14FA239F2ED5938B00AF7F67 /* AppIcon.icon */,
 			);
 			sourceTree = "<group>";
 		};
@@ -130,9 +124,6 @@
 			dependencies = (
 				14FA237A2ED5934700AF7F67 /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				14FA237B2ED5934700AF7F67 /* TakeCtrlTests */,
-			);
 			name = TakeCtrlTests;
 			packageProductDependencies = (
 			);
@@ -152,9 +143,6 @@
 			);
 			dependencies = (
 				14FA23842ED5934700AF7F67 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				14FA23852ED5934700AF7F67 /* TakeCtrlUITests */,
 			);
 			name = TakeCtrlUITests;
 			packageProductDependencies = (
@@ -212,6 +200,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14FA23A02ED5938B00AF7F67 /* AppIcon.icon in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
