@@ -15,6 +15,10 @@ while left clicking.
 
 Take Control of your Control key with TakeCtrl.
 
-## Download
+## Download & Setup
 
 Releases can be found [here](https://github.com/zacheri04/TakeCtrl/releases).
+
+The first time running TakeCtrl, you'll need to give TakeCtrl access to control your Mac under Privacy & Security -> Accessibility.
+
+<img src="https://cdn.discordapp.com/attachments/486251739910111260/1442789143657844736/Screenshot_2025-11-25_at_2.08.39_AM.png?ex=6926b599&is=69256419&hm=77bc47d177c07736156cb38a9dee688444d8aff32ed7cd27a0348e9ffe5d30ad&" alt="Privacy & Security" width="480">
