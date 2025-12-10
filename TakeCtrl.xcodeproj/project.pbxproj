@@ -10,7 +10,21 @@
 		14FA23A02ED5938B00AF7F67 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 14FA239F2ED5938B00AF7F67 /* AppIcon.icon */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		1469033F2EDE311A0059F6B4 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		1469032E2EDE31190059F6B4 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		14FA236B2ED5934600AF7F67 /* TakeCtrl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TakeCtrl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14FA239F2ED5938B00AF7F67 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -34,10 +48,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1469032B2EDE31190059F6B4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1469032E2EDE31190059F6B4 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		14FA23622ED5934600AF7F67 = {
 			isa = PBXGroup;
 			children = (
 				14FA236D2ED5934600AF7F67 /* TakeCtrl */,
+				1469032B2EDE31190059F6B4 /* Frameworks */,
 				14FA236C2ED5934600AF7F67 /* Products */,
 				14FA239F2ED5938B00AF7F67 /* AppIcon.icon */,
 			);
@@ -61,6 +84,7 @@
 				14FA23672ED5934600AF7F67 /* Sources */,
 				14FA23682ED5934600AF7F67 /* Frameworks */,
 				14FA23692ED5934600AF7F67 /* Resources */,
+				1469033F2EDE311A0059F6B4 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
@@ -274,7 +298,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = zackdupree.TakeCtrl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
@@ -309,7 +333,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = zackdupree.TakeCtrl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;

@@ -15,11 +15,24 @@ enum TakeCtrlError: Error {
 
 @main
 struct TakeCtrlApp: App {
-    @State private var toggle: Bool = false
+    // State var to enable/disable entire app
+    @State private var takeCtrlToggle: Bool = false
+
+    // State var to manage control modifier
+    @State private var controlToggle: Bool = false
+
+    // State var to manage shift modifier
+    @State private var shiftToggle: Bool = false
+
+    // State var to manage open at login preference
     @State private var openAtLoginPreference: Bool = LaunchAtLogin.isEnabled
     @StateObject private var interceptor: ClickInterceptor
 
-    @State private var permissionTimer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
+    @State private var permissionTimer = Timer.publish(
+        every: 1.0,
+        on: .main,
+        in: .common
+    ).autoconnect()
 
     init() {
         let newInterceptor = ClickInterceptor()
@@ -34,7 +47,7 @@ struct TakeCtrlApp: App {
         }
 
         _interceptor = StateObject(wrappedValue: newInterceptor)
-        _toggle = State(initialValue: startSuccess)
+        _takeCtrlToggle = State(initialValue: startSuccess)
     }
 
     var body: some Scene {
@@ -50,15 +63,38 @@ struct TakeCtrlApp: App {
                     }
                     .buttonStyle(.accessoryBar)
                 } else {
-                    // Toggle Interceptor on/off
+                    // Toggle entire app on/off
                     HStack {
                         Text("Enable TakeCtrl")
                         Spacer()
-                        Toggle("", isOn: $toggle)
+                        Toggle("", isOn: $takeCtrlToggle)
                             .toggleStyle(.switch)
                             .labelsHidden()
                     }
                     .padding([.leading, .trailing], 10)
+                    
+
+                    if takeCtrlToggle {
+                        // Toggle Control Modifier on/off
+                        HStack {
+                            Text("Control-Click Override")
+                            Spacer()
+                            Toggle("", isOn: $controlToggle)
+                                .toggleStyle(.switch)
+                                .labelsHidden()
+                        }
+                        .padding([.leading, .trailing], 10)
+
+                        // Toggle Shift Modifier on/off
+                        HStack {
+                            Text("Shift-Scroll Override")
+                            Spacer()
+                            Toggle("", isOn: $shiftToggle)
+                                .toggleStyle(.switch)
+                                .labelsHidden()
+                        }
+                        .padding([.leading, .trailing], 10)
+                    }
 
                     // Open at Login Toggle
                     HStack {
@@ -76,7 +112,8 @@ struct TakeCtrlApp: App {
                     NSApp.activate(ignoringOtherApps: true)
 
                     let credits = NSMutableAttributedString(
-                        string: "Created by Zack Dupree\n")
+                        string: "Created by Zack Dupree\n"
+                    )
 
                     let linkText = NSAttributedString(
                         string: "View Project on GitHub",
@@ -91,7 +128,6 @@ struct TakeCtrlApp: App {
                         ]
                     )
 
-                    // 3. Combine them
                     credits.append(linkText)
 
                     // Standard about page panel
@@ -119,10 +155,12 @@ struct TakeCtrlApp: App {
                 .buttonStyle(.accessoryBar)
             }
             .onReceive(permissionTimer) { _ in
-                if interceptor.getPermission() && !interceptor.getHasStartedOnce() {
+                if interceptor.getPermission()
+                    && !interceptor.hasStartedOnce
+                {
                     do {
                         try interceptor.start()
-                        toggle = true
+                        controlToggle = true
                     } catch {
                         print(error)
                     }
@@ -138,21 +176,27 @@ struct TakeCtrlApp: App {
                 $0.size.height = 18
                 $0.size.width = 18 / ratio
                 return $0
-            }(NSImage(named: "BarIcon")!)
+            }(NSImage(named: "AppIcon")!)
 
             Image(nsImage: image)
         }
-        .onChange(of: toggle) {
+        .onChange(of: takeCtrlToggle) {
             // Handle enabling/disabling interceptor while application running
-            if toggle {
+            if takeCtrlToggle {
                 do {
                     try interceptor.start()
                 } catch {
-                    toggle = false
+                    takeCtrlToggle = false
                 }
             } else {
                 interceptor.stop()
             }
+        }
+        .onChange(of: controlToggle) {
+            interceptor.setEnableControlFix(controlToggle)
+        }
+        .onChange(of: shiftToggle) {
+            interceptor.setEnableShiftFix(shiftToggle)
         }
         .onChange(of: openAtLoginPreference) {
             // Handle toggling open at login
@@ -198,4 +242,3 @@ final class LaunchAtLogin {
         }
     }
 }
-

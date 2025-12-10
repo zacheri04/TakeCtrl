@@ -34,24 +34,36 @@ private func globalEventCallback(
         }
     }
 
+    // Check if scroll wheel input
+    if type == .scrollWheel {
+        let flags = event.flags
+
+        // Check if Shift was held during the click
+        if flags.contains(.maskShift) {
+            // Remove Shift modifier
+            let newFlags = flags.subtracting(.maskShift)
+            event.flags = newFlags
+
+            return Unmanaged.passRetained(event)
+        }
+    }
+
     return Unmanaged.passRetained(event)
 }
 
 class ClickInterceptor: ObservableObject {
     private var eventTap: CFMachPort?
     private var runLoopSource: CFRunLoopSource?
+    private var enableControlFix = false
+    private var enableShiftFix = false
+    private var eventMask: UInt32 = 0
 
     // Tracks if the service is currently running
     @Published var isRunning = false
-    
     @Published var hasStartedOnce = false
 
     func start() throws {
         guard !isRunning else { return }
-
-        let eventMask =
-            (1 << CGEventType.leftMouseDown.rawValue)
-            | (1 << CGEventType.leftMouseUp.rawValue)
 
         guard
             let tap = CGEvent.tapCreate(
@@ -59,7 +71,7 @@ class ClickInterceptor: ObservableObject {
                 place: .headInsertEventTap,
                 options: .defaultTap,
                 eventsOfInterest: CGEventMask(eventMask),
-                callback: globalEventCallback,  // Pass the global function here
+                callback: globalEventCallback,
                 userInfo: nil
             )
         else {
@@ -79,7 +91,9 @@ class ClickInterceptor: ObservableObject {
     }
 
     func stop() {
-        guard isRunning, let tap = eventTap, let source = runLoopSource else { return }
+        guard isRunning, let tap = eventTap, let source = runLoopSource else {
+            return
+        }
 
         // Disable the tap
         CGEvent.tapEnable(tap: tap, enable: false)
@@ -92,12 +106,41 @@ class ClickInterceptor: ObservableObject {
         self.runLoopSource = nil
         self.isRunning = false
     }
-    
-    func getHasStartedOnce() -> Bool {
-        return hasStartedOnce
-    }
 
     func getPermission() -> Bool {
         return AXIsProcessTrusted()
+    }
+
+    func setEnableControlFix(_ enable: Bool) {
+        self.enableControlFix = enable
+        updateEventMask()
+    }
+
+    func setEnableShiftFix(_ enable: Bool) {
+        self.enableShiftFix = enable
+        updateEventMask()
+    }
+
+    private func updateEventMask() {
+        if self.enableShiftFix && self.enableControlFix {
+            self.eventMask = (1 << CGEventType.scrollWheel.rawValue) | (1 << CGEventType.leftMouseDown.rawValue)
+            | (1 << CGEventType.leftMouseUp.rawValue)
+        }
+        else if self.enableControlFix && !self.enableShiftFix {
+            self.eventMask = (1 << CGEventType.leftMouseDown.rawValue)
+                | (1 << CGEventType.leftMouseUp.rawValue)
+        }
+        else if self.enableShiftFix && !self.enableControlFix {
+            self.eventMask = (1 << CGEventType.scrollWheel.rawValue)
+        } else {
+            self.eventMask = 0
+        }
+        
+        self.stop()
+        do {
+            try self.start()
+        } catch {
+            print(error)
+        }
     }
 }
