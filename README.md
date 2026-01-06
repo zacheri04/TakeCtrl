@@ -16,7 +16,7 @@ It's useful for games like Minecraft where you may want to sprint (with the Cont
 
 Supports Open at Login functionality.
 
-<img src="https://raw.githubusercontent.com/zacheri04/TakeCtrl/refs/heads/main/assets/product_1_2.png" alt="Screenshot" width="360">
+<img src="https://raw.githubusercontent.com/zacheri04/TakeCtrl/refs/heads/main/assets/product_1_3.png" alt="Screenshot" width="360">
 
 Take Control of your Mouse + Keyboard with TakeCtrl.
 
