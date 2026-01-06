@@ -26,4 +26,6 @@ Releases can be found [here](https://github.com/zacheri04/TakeCtrl/releases).
 
 The first time running TakeCtrl, you'll need to give TakeCtrl access to control your Mac under Privacy & Security -> Accessibility.
 
+<div align="center">
 <img src="https://raw.githubusercontent.com/zacheri04/TakeCtrl/cbeb64791784375c038d1aa0a49578d52d6395f4/assets/accessibility.png" alt="Privacy & Security" width="480">
+</div>
