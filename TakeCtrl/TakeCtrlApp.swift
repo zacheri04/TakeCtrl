@@ -73,8 +73,9 @@ struct TakeCtrlApp: App {
                     }
                     .padding([.leading, .trailing], 10)
                     
-
                     if takeCtrlToggle {
+                        Divider()
+                        
                         // Toggle Control Modifier on/off
                         HStack {
                             Text("Control-Click Override")
@@ -96,6 +97,8 @@ struct TakeCtrlApp: App {
                         .padding([.leading, .trailing], 10)
                     }
 
+                    Divider()
+                    
                     // Open at Login Toggle
                     HStack {
                         Text("Open at Login")
@@ -106,7 +109,6 @@ struct TakeCtrlApp: App {
                     }
                     .padding([.leading, .trailing], 10)
                 }
-                Divider()
 
                 Button(action: {
                     NSApp.activate(ignoringOtherApps: true)
