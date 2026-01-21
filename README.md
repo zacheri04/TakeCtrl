@@ -22,6 +22,8 @@ Take Control of your Mouse + Keyboard with TakeCtrl.
 
 ## Download & Setup
 
+Supports macOS Sonoma (14) and newer.
+
 Releases can be found [here](https://github.com/zacheri04/TakeCtrl/releases).
 
 The first time running TakeCtrl, you'll need to give TakeCtrl access to control your Mac under Privacy & Security -> Accessibility.
